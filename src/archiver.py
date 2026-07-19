@@ -1,19 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-from pathlib import Path
 from urllib.parse import urljoin
 
-from config import ARCHIVE_DIR
+from config import (
+    ARCHIVE_DIR,
+    USER_AGENT,
+    REQUEST_TIMEOUT
+)
+
+from utils import (
+    sanitize_filename,
+    get_timestamp
+)
 
 
 def download_file(url, folder):
     try:
         r = requests.get(
             url,
-            timeout=15,
+            timeout=REQUEST_TIMEOUT,
             headers={
-                "User-Agent": "MuffixxArchiver/0.2"
+                "User-Agent": USER_AGENT
             }
         )
 
@@ -24,6 +31,8 @@ def download_file(url, folder):
         if not filename:
             filename = "file"
 
+        filename = sanitize_filename(filename)
+
         path = folder / filename
 
         with open(path, "wb") as f:
@@ -31,7 +40,7 @@ def download_file(url, folder):
 
         return filename
 
-    except:
+    except Exception:
         return None
 
 
@@ -39,9 +48,9 @@ def archive_site(url):
     try:
         response = requests.get(
             url,
-            timeout=15,
+            timeout=REQUEST_TIMEOUT,
             headers={
-                "User-Agent": "MuffixxArchiver/0.2"
+                "User-Agent": USER_AGENT
             }
         )
 
@@ -53,34 +62,29 @@ def archive_site(url):
         )
 
         title = (
-            soup.title.string
-            if soup.title
+            soup.title.string.strip()
+            if soup.title and soup.title.string
             else "website"
         )
 
         folder_name = (
-            title
-            .replace("/", "_")
-            .replace("\\", "_")
+            sanitize_filename(title)
             + "_"
-            + datetime.now().strftime("%Y-%m-%d_%H-%M")
+            + get_timestamp()
         )
 
-
         archive_path = ARCHIVE_DIR / folder_name
-        archive_path.mkdir()
-
+        archive_path.mkdir(parents=True, exist_ok=True)
 
         assets = archive_path / "assets"
+
         css_dir = assets / "css"
         js_dir = assets / "js"
         img_dir = assets / "img"
 
-
-        css_dir.mkdir(parents=True)
-        js_dir.mkdir()
-        img_dir.mkdir()
-
+        css_dir.mkdir(parents=True, exist_ok=True)
+        js_dir.mkdir(parents=True, exist_ok=True)
+        img_dir.mkdir(parents=True, exist_ok=True)
 
         # CSS
         for link in soup.find_all("link"):
@@ -88,26 +92,35 @@ def archive_site(url):
 
             if href and "stylesheet" in link.get("rel", []):
                 css_url = urljoin(url, href)
-                download_file(css_url, css_dir)
 
+                filename = download_file(css_url, css_dir)
 
-        # JS
+                if filename:
+                    link["href"] = f"assets/css/{filename}"
+
+        # javascript
         for script in soup.find_all("script"):
             src = script.get("src")
 
             if src:
                 js_url = urljoin(url, src)
-                download_file(js_url, js_dir)
 
+                filename = download_file(js_url, js_dir)
 
-        # Images
+                if filename:
+                    script["src"] = f"assets/js/{filename}"
+
+        # img
         for img in soup.find_all("img"):
             src = img.get("src")
 
             if src:
                 img_url = urljoin(url, src)
-                download_file(img_url, img_dir)
 
+                filename = download_file(img_url, img_dir)
+
+                if filename:
+                    img["src"] = f"assets/img/{filename}"
 
         with open(
             archive_path / "index.html",
@@ -116,9 +129,7 @@ def archive_site(url):
         ) as f:
             f.write(str(soup))
 
-
         return True, archive_path
-
 
     except Exception as e:
         return False, str(e)
