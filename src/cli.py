@@ -1,51 +1,51 @@
-import argparse
+from cli import get_args
+from archiver import archive_site
 
-def get_args():
-    parser = argparse.ArgumentParser(
-        prog="muffixx-archiver",
-        description="Archive websites for offline viewing."
+
+BANNER = r"""
+ /$$      /$$            /$$$$$$   /$$$$$$  /$$                      /$$$$$$                      /$$       /$$
+| $$$    /$$$           /$$__  $$ /$$__  $$|__/                     /$$__  $$                    | $$      |__/
+| $$$$  /$$$$ /$$   /$$| $$  \__/| $$  \__/ /$$ /$$   /$$ /$$   /$$| $$  \ $$  /$$$$$$   /$$$$$$$| $$$$$$$  /$$
+| $$ $$/$$ $$| $$  | $$| $$$$    | $$$$    | $$|  $$ /$$/|  $$ /$$/| $$$$$$$$ /$$__  $$ /$$_____/| $$__  $$| $$
+| $$  $$$| $$| $$  | $$| $$_/    | $$_/    | $$ \  $$$$/  \  $$$$/ | $$__  $$| $$  \__/| $$      | $$  \ $$| $$
+| $$\  $ | $$| $$  | $$| $$      | $$      | $$  >$$  $$   >$$  $$ | $$  | $$| $$      | $$      | $$  | $$| $$
+| $$ \/  | $$|  $$$$$$/| $$      | $$      | $$ /$$/\  $$ /$$/\  $$| $$  | $$| $$      |  $$$$$$$| $$  | $$| $$
+|__/     |__/ \______/ |__/      |__/      |__/|__/  \__/|__/  \__/|__/  |__/|__/       \_______/|__/  |__/|__/
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Author   : Mustiskooo
+ Discord  : bnmuffix
+ GitHub   : https://github.com/Mustiskooo
+ Version  : 1.0
+ Platform : Windows | Linux | Termux
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+"""
+
+
+def main():
+    print(BANNER)
+
+    args = get_args()
+
+    print("[*] Configuration")
+    print(f" ├─ URL    : {args.url}")
+    print(f" └─ Output : {args.output}")
+    print()
+
+    print("[*] Starting archive...\n")
+
+    ok, result = archive_site(
+        url=args.url,
+        output=args.output
     )
 
-    parser.add_argument(
-        "url",
-        help="Website URL to archive"
-    )
+    if ok:
+        print("\n[+] Archive completed successfully!")
+        print(f"[+] Saved to: {result}")
+    else:
+        print("\n[-] Archive failed!")
+        print(f"[-] {result}")
 
-    parser.add_argument(
-        "-o", "--output",
-        default="archives",
-        help="Output directory"
-    )
 
-    parser.add_argument(
-        "-d", "--depth",
-        type=int,
-        default=1,
-        help="Crawl depth (default: 1)"
-    )
-
-    parser.add_argument(
-        "--no-css",
-        action="store_true",
-        help="Don't download CSS files"
-    )
-
-    parser.add_argument(
-        "--no-js",
-        action="store_true",
-        help="Don't download JavaScript files"
-    )
-
-    parser.add_argument(
-        "--no-images",
-        action="store_true",
-        help="Don't download images"
-    )
-
-    parser.add_argument(
-        "-q", "--quiet",
-        action="store_true",
-        help="Silent mode"
-    )
-
-    return parser.parse_args()
+if __name__ == "__main__":
+    main()
