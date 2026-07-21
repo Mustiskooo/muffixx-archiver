@@ -1,4 +1,6 @@
-from cli import get_args
+import os
+import argparse
+
 from archiver import archive_site
 
 
