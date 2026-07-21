@@ -1,9 +1,10 @@
-import requests
-from bs4 import BeautifulSoup
+from pathlib import Path
 from urllib.parse import urljoin
 
+import requests
+from bs4 import BeautifulSoup
+
 from config import (
-    ARCHIVE_DIR,
     USER_AGENT,
     REQUEST_TIMEOUT
 )
@@ -44,7 +45,7 @@ def download_file(url, folder):
         return None
 
 
-def archive_site(url):
+def archive_site(url, output="archives"):
     try:
         response = requests.get(
             url,
@@ -73,7 +74,10 @@ def archive_site(url):
             + get_timestamp()
         )
 
-        archive_path = ARCHIVE_DIR / folder_name
+        output_dir = Path(output)
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        archive_path = output_dir / folder_name
         archive_path.mkdir(parents=True, exist_ok=True)
 
         assets = archive_path / "assets"
@@ -98,7 +102,7 @@ def archive_site(url):
                 if filename:
                     link["href"] = f"assets/css/{filename}"
 
-        # javascript
+        # JavaScript
         for script in soup.find_all("script"):
             src = script.get("src")
 
@@ -110,7 +114,7 @@ def archive_site(url):
                 if filename:
                     script["src"] = f"assets/js/{filename}"
 
-        # img
+        # Images
         for img in soup.find_all("img"):
             src = img.get("src")
 
