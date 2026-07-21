@@ -1,57 +1,22 @@
-import tkinter as tk
-from tkinter import messagebox
-
+from cli import get_args
 from archiver import archive_site
 
 
-def start():
-    url = entry.get()
+def main():
+    args = get_args()
 
-    if not url:
-        return
-
-    ok, result = archive_site(url)
+    ok, result = archive_site(
+        url=args.url,
+        output=args.output
+    )
 
     if ok:
-        messagebox.showinfo(
-            "Muffixx Archiver",
-            f"Arşiv oluşturuldu:\n{result}"
-        )
+        print(f"\n✅ Archive created successfully!")
+        print(f"📁 {result}")
     else:
-        messagebox.showerror(
-            "Hata",
-            result
-        )
+        print(f"\n❌ Error:")
+        print(result)
 
 
-root = tk.Tk()
-root.title("Muffixx Archiver")
-root.geometry("400x180")
-
-
-label = tk.Label(
-    root,
-    text="Web adresi:"
-)
-
-label.pack(pady=5)
-
-
-entry = tk.Entry(
-    root,
-    width=45
-)
-
-entry.pack()
-
-
-button = tk.Button(
-    root,
-    text="Archive",
-    command=start
-)
-
-button.pack(pady=20)
-
-
-root.mainloop()
+if __name__ == "__main__":
+    main()
