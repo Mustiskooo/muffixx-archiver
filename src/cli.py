@@ -24,25 +24,21 @@ BANNER = r"""
 """
 
 def get_args():
-    parser = argparse.ArgumentParser(
-        prog="muffixx-archiver",
-        description="Archive websites for offline viewing."
-    )
+    url = input("[?] Website URL: ").strip()
 
-    parser.add_argument(
-        "url",
-        help="Website URL"
-    )
+    output = input("[?] Output Folder [archives]: ").strip()
+    if not output:
+        output = "archives"
 
-    parser.add_argument(
-        "-o",
-        "--output",
-        default="archives",
-        help="Output directory"
-    )
+    class Args:
+        pass
 
-    return parser.parse_args()
+    args = Args()
+    args.url = url
+    args.output = output
 
+    return args
+ 
 def main():
     print(BANNER)
 
