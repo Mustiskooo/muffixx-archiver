@@ -6,7 +6,7 @@ Muffixx Archiver allows you to save websites locally by downloading the main HTM
 
 ## ✨ Features
 
-- 🖥️ Simple GUI interface with Tkinter
+- 🖥️ Simple CLI interface
 - 🌐 Website HTML archiving
 - 🎨 CSS file downloading
 - ⚙️ JavaScript file downloading
