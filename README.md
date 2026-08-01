@@ -10,10 +10,8 @@ Muffixx Archiver allows you to save websites locally by downloading the main HTM
 - 🌐 Website HTML archiving
 - 🎨 CSS file downloading
 - ⚙️ JavaScript file downloading
-- 🖼️ Image downloading
 - 📁 Automatic archive folder creation
 - 🕒 Timestamp-based archive naming
-- 🛡️ Custom User-Agent and request timeout support
 
 ## 📸 Screenshot
 
