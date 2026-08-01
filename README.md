@@ -105,12 +105,13 @@ Your archived website will now run through a local web server.
 ```
 muffixx-archiver/
 │
-├── main.py          # GUI application
-├── archiver.py      # Website archiving engine
-├── config.py        # Configuration settings
-├── utils.py         # Utility functions
-│
-├── archives/        # Generated archives
+src/
+    ├── main.py          # GUI application
+    ├── archiver.py      # Website archiving engine
+    ├── config.py        # Configuration settings
+    ├── utils.py         # Utility functions
+    │
+    ├── archives/        # Generated archives
 │
 ├── requirements.txt
 └── README.md
