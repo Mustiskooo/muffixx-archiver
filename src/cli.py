@@ -18,7 +18,7 @@ BANNER = r"""
  Author   : Mustiskooo
  Discord  : bnmuffix
  GitHub   : https://github.com/Mustiskooo
- Version  : 1.0
+ Version  : 1.2
  Platform : Windows | Linux | Termux
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 """
