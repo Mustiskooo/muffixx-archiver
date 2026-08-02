@@ -6,29 +6,29 @@ Muffixx Archiver allows you to save websites locally by downloading the main HTM
 
 ## ✨ Features
 
-- 🖥️ Simple CLI interface
-- 🌐 Website HTML archiving
-- 🎨 CSS file downloading
-- ⚙️ JavaScript file downloading
-- 📁 Automatic archive folder creation
-- 🕒 Timestamp-based archive naming
+- Simple CLI interface
+- Website HTML archiving
+- CSS file downloading
+- JavaScript file downloading
+- Archive folder creation
+- Timestamp-based archive folder naming
 
-## 📸 Screenshot
+## 📸 Screenshots
 
-_maybe i'll add screenshot here :3_
+_i'll add screenshot here soon :3_
 
 ## 📦 Installation
 
 Clone the repository:
 
-```bash
+```
 git clone https://github.com/Mustiskooo/muffixx-archiver.git
 ```
 
 Go to the project folder:
 
-```bash
-cd muxfixx-archiver
+```
+cd muffixx-archiver
 ```
 
 Install requirements:
@@ -37,7 +37,7 @@ Install requirements:
 pip install -r requirements.txt
 ```
 
-## ▶️ Usage
+## Usage
 
 Run the application:
 
@@ -65,7 +65,7 @@ archives/
         └── img/
 ```
 
-## 🌐 Viewing Archives
+## IMPORTANT
 
 For the best experience, open archives using a local server.
 
@@ -73,13 +73,13 @@ Opening `index.html` directly may cause browser security errors because of `file
 
 Go into the archive folder:
 
-```bash
-cd archives/Your_Archive_Name
+```
+cd archives/[ARCHIVE NAME]
 ```
 
 Start a local server:
 
-```bash
+```
 python -m http.server 8000
 ```
 
@@ -93,26 +93,32 @@ Your archived website will now run through a local web server.
 
 ## 🛠️ Technologies
 
-- Python
-- Tkinter
-- Requests
-- BeautifulSoup4
+- python3
+- requests
+- beautifulsoup4
 
-## 📂 Project Structure
+## 📂 Project's Structure
 
 ```
-muffixx-archiver/
-│
-src/
-    ├── main.py          # GUI application
-    ├── archiver.py      # Website archiving engine
-    ├── config.py        # Configuration settings
-    ├── utils.py         # Utility functions
+muffixx-archiver
+    │   .gitkeep
+    │   README.md
     │
-    ├── archives/        # Generated archives
-│
-├── requirements.txt
-└── README.md
+    └───src
+        │   .gitkeep
+        │   archiver.py
+        │   cli.py
+        │   config.py
+        │   main.py
+        │   run.bat
+        │   utils.py
+        │
+        ├───archives
+        ├───logs
+        └───__pycache__ [Auto-generated on first run]
+                [cache files Auto-generated on first run]
+
+
 ```
 
 ## 📌 Version
@@ -126,6 +132,8 @@ v1.0
 ## 👤 Developer
 
 Created by **Mustiskooo**
+
+**Built with <3 with Python**
 
 GitHub:
 https://github.com/Mustiskooo
