@@ -61,6 +61,11 @@ def archive_site(url, output="archives"):
             response.text,
             "html.parser"
         )
+# base tag temizle
+        base_tag = soup.find("base")
+
+        if base_tag:
+            base_tag.decompose()
 
         title = (
             soup.title.string.strip()
