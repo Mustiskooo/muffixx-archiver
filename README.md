@@ -93,7 +93,7 @@ Your archived website will now run through a local web server.
 
 ## 🛠️ Technologies
 
-- python
+- Python
 - requests
 - beautifulsoup4
 
@@ -127,10 +127,17 @@ Current version is **v1.0**
 ## Planned Features
 
 - Support for more asset types (fonts, videos, icons, etc.)
-- Better error handling,
-- Bug fixes and performance improvements.
-- 
+- Better error handling
+- Bug fixes and performance improvements
 
+## 🐞 Issues / Requests
+
+Found a bug or have an idea for a new feature?
+
+Feel free to open an issue or send me an email at [muffixx@proton.me](mailto:muffixx@proton.me).
+
+I'll do my best to fix bugs and implement new features whenever I have time.
+    
 ## 👤 Developer
 
 Created by **Mustiskooo**
