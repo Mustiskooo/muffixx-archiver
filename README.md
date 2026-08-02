@@ -45,7 +45,7 @@ Run the application:
 python main.py
 ```
 
-Enter a website URL and press **Archive**.
+Enter a website URL and press **Enter**.
 
 The archived website will be saved inside:
 
@@ -65,7 +65,7 @@ archives/
         └── img/
 ```
 
-## IMPORTANT
+## ❗ IMPORTANT
 
 For the best experience, open archives using a local server.
 
@@ -93,11 +93,11 @@ Your archived website will now run through a local web server.
 
 ## 🛠️ Technologies
 
-- python3
+- python
 - requests
 - beautifulsoup4
 
-## 📂 Project's Structure
+## 📂 Project Structure
 
 ```
 muffixx-archiver
@@ -116,18 +116,20 @@ muffixx-archiver
         ├───archives
         ├───logs
         └───__pycache__ [Auto-generated on first run]
-                [cache files Auto-generated on first run]
 
 
 ```
 
 ## 📌 Version
 
-Current version:
+Current version is **v1.0**
 
-```
-v1.0
-```
+## Planned Features
+
+- Support for more asset types (fonts, videos, icons, etc.)
+- Better error handling,
+- Bug fixes and performance improvements.
+- 
 
 ## 👤 Developer
 
