@@ -39,9 +39,15 @@ pip install -r requirements.txt
 
 ## Usage
 
+
+
+```
+cd src
+```
+
 Run the application:
 
-```bash
+```
 python main.py
 ```
 

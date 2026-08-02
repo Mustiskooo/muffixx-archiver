@@ -90,7 +90,7 @@ def archive_site(url, output="archives"):
         js_dir.mkdir(parents=True, exist_ok=True)
         img_dir.mkdir(parents=True, exist_ok=True)
 
-        # CSS
+# css indirme
         for link in soup.find_all("link"):
             href = link.get("href")
 
@@ -102,7 +102,7 @@ def archive_site(url, output="archives"):
                 if filename:
                     link["href"] = f"assets/css/{filename}"
 
-        # JavaScript
+# javascript indirme
         for script in soup.find_all("script"):
             src = script.get("src")
 
@@ -114,7 +114,7 @@ def archive_site(url, output="archives"):
                 if filename:
                     script["src"] = f"assets/js/{filename}"
 
-        # Images
+# resim indirme
         for img in soup.find_all("img"):
             src = img.get("src")
 
